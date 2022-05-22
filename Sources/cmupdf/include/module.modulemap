@@ -1,0 +1,6 @@
+module cmupdf {
+    header "CMuPDFDocument.hxx"
+    header "CMuPDFPage.hxx"
+    header "CMuPDFMimeType.hxx"
+    export *
+}
