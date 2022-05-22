@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "libyuv.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/awxkee/libyuv.swift.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "dc6816ad6cf3c200b069b8e9255bdf5989d6fa64"
+      }
+    }
+  ],
+  "version" : 2
+}

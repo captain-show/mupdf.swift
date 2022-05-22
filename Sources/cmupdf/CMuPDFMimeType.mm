@@ -1,6 +1,5 @@
 //
-//  CMuPDFMimeType.m
-//  
+//  CMuPDFMimeType.mm
 //
 //  Created by Radzivon Bartoshyk on 22/05/2022.
 //

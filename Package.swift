@@ -12,12 +12,12 @@ let package = Package(
             targets: ["mupdf"]),
     ],
     dependencies: [
-        
+        .package(url: "https://github.com/awxkee/libyuv.swift.git", branch: "master")
     ],
     targets: [
         .target(
             name: "mupdf",
-            dependencies: ["cmupdf"]),
+            dependencies: ["cmupdf", .product(name: "libyuv", package: "libyuv.swift")]),
         .target(name: "cmupdf",
                 dependencies: ["libmupdf", "libmupdf-threads", "libmupdf-third", "libmupdf-pkcs7"],
                 publicHeadersPath: "include",
@@ -28,7 +28,7 @@ let package = Package(
         .binaryTarget(name: "libmupdf-third", path: "Sources/libmupdf-third.xcframework"),
         .binaryTarget(name: "libmupdf-pkcs7", path: "Sources/libmupdf-pkcs7.xcframework"),
         .testTarget(
-            name: "bookrenderTests",
+            name: "mupdfTests",
             dependencies: ["mupdf"]),
     ]
 )

@@ -1,5 +1,5 @@
 //
-//  MuPDFDocument.h
+//  CMuPDFDocument.hxx
 //
 //  Created by Radzivon Bartoshyk on 21/05/2022.
 //
@@ -27,4 +27,4 @@
 -(int)numberOfPages;
 @end
 
-#endif /* MuPDFDocument_h */
+#endif /* MuPDFDocument.hxx */

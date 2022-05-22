@@ -1,6 +1,5 @@
 //
-//  MuPDFDocument.m
-//  testmacosapp
+//  MuPDFDocument.mm
 //
 //  Created by Radzivon Bartoshyk on 21/05/2022.
 //
@@ -10,17 +9,7 @@
 #import "mupdf/fitz.h"
 #import "CMuPDFMimeType.hxx"
 #include <pthread.h>
-
-void fast_unpack(char* rgba, const char* rgb, const int count) {
-    if(count==0)
-        return;
-    for(int i=count; --i; rgba+=4, rgb+=3) {
-        *(uint32_t*)(void*)rgba = *(const uint32_t*)(const void*)rgb;
-    }
-    for(int j=0; j<3; ++j) {
-        rgba[j] = rgb[j];
-    }
-}
+#import "libyuv.h"
 
 void lock_mutex(void *user, int lock)
 {
@@ -176,7 +165,7 @@ void unlock_mutex(void *user, int lock)
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     int flags = kCGBitmapByteOrder32Big | kCGImageAlphaNoneSkipLast;
     auto finalBuffer = malloc(pix->w * pix->h * 4);
-    fast_unpack((char*)finalBuffer, (char*) pix->samples, pix->w*pix->h);
+    libyuv::RAWToRGBA(pix->samples, pix->stride, (uint8_t*)finalBuffer, pix->w * 4, pix->w, pix->h);
     CGContextRef gtx = CGBitmapContextCreate(finalBuffer, pix->w, pix->h, 8, pix->w * 4, colorSpace, flags);
     fz_drop_pixmap(ctx, pix);
     if (gtx == NULL) {
